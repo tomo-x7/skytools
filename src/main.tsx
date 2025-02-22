@@ -13,7 +13,7 @@ import { LoginOverlay } from "./LoginOverlay.tsx";
 import { Agent } from "@atproto/api";
 const init = async () => {
 	const client = await BrowserOAuthClient.load({
-		clientId: "https://skytools.womo-x.win/client-metadata.json",
+		clientId: "https://skytools.tomo-x.win/client-metadata.json",
 		handleResolver: "https://public.api.bsky.app",
 	});
 	const { session, agent } = await (async (): Promise<{ session?: OAuthSession; agent?: Agent }> => {
