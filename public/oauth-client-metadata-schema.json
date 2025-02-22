@@ -1,0 +1,87 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"additionalProperties": false,
+	"required": ["redirect_uris"],
+	"properties": {
+		"redirect_uris": { "type": "array", "items": { "type": "string" } },
+		"response_types": { "type": "array", "items": { "$ref": "#/definitions/responseType" }, "default": ["code"] },
+		"grant_types": {
+			"type": "array",
+			"items": { "$ref": "#/definitions/grantType" },
+			"default": ["authorization_code"]
+		},
+		"scope": {
+			"type": "string",
+			"pattern": "^[\\x21\\x23-\\x5B\\x5D-\\x7E]+(?: [\\x21\\x23-\\x5B\\x5D-\\x7E]+)*$"
+		},
+		"token_endpoint_auth_method": { "$ref": "#/endpointAuthMethod", "default": "none" },
+		"token_endpoint_auth_signing_alg": { "type": "string" },
+		"userinfo_signed_response_alg": { "type": "string" },
+		"userinfo_encrypted_response_alg": { "type": "string" },
+		"jwks_uri": { "type": "string", "format": "uri" },
+		"jwks": {
+			"type": "object",
+			"properties": { "keys": { "type": "array", "items": { "$ref": "#/definitions/jwkPub" } } }
+		},
+		"application_type": { "type": "string", "enum": ["web", "native"], "default": "web" },
+		"subject_type": { "type": "string", "enum": ["public", "pairwise"], "default": "public" },
+		"request_object_signing_alg": { "type": "string" },
+		"id_token_signed_response_alg": { "type": "string" },
+		"authorization_signed_response_alg": { "type": "string", "default": "RS256" },
+		"authorization_encrypted_response_enc": { "type": "string", "enum": ["A128CBC-HS256"] },
+		"authorization_encrypted_response_alg": { "type": "string" },
+		"client_id": { "type": "string", "minLength": 1 },
+		"client_name": { "type": "string" },
+		"client_uri": { "type": "string", "format": "uri" },
+		"policy_uri": { "type": "string", "format": "uri" },
+		"tos_uri": { "type": "string", "format": "uri" },
+		"logo_uri": { "type": "string", "format": "uri" },
+		"default_max_age": { "type": "integer" },
+		"require_auth_time": { "type": "boolean" },
+		"contacts": { "type": "array", "items": { "type": "string", "format": "email" } },
+		"tls_client_certificate_bound_access_tokens": { "type": "boolean" },
+		"dpop_bound_access_tokens": { "type": "boolean" },
+		"authorization_details_types": { "type": "array", "items": { "type": "string" } }
+	},
+	"definitions": {
+		"responseType": {
+			"type": "string",
+			"enum": [
+				"code",
+				"token",
+				"none",
+				"code id_token token",
+				"code id_token",
+				"code token",
+				"id_token token",
+				"id_token"
+			]
+		},
+		"grantType": {
+			"type": "string",
+			"enum": [
+				"authorization_code",
+				"implicit",
+				"refresh_token",
+				"password",
+				"client_credentials",
+				"urn:ietf:params:oauth:grant-type:jwt-bearer",
+				"urn:ietf:params:oauth:grant-type:saml2-bearer"
+			]
+		},
+		"endpointAuthMethod": {
+			"type": "string",
+			"enum": [
+				"client_secret_basic",
+				"client_secret_jwt",
+				"client_secret_post",
+				"none",
+				"private_key_jwt",
+				"self_signed_tls_client_auth",
+				"tls_client_auth"
+			]
+		},
+		"jwkPub": { "type": "object", "required": ["kid"], "propertyNames": { "not": { "enum": ["k", "d"] } } }
+	}
+}
