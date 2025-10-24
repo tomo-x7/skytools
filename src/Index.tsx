@@ -1,3 +1,7 @@
-export function Index(){
-    return <><h1>skytools</h1></>
+export function Index() {
+	return (
+		<>
+			<h1>skytools</h1>
+		</>
+	);
 }

@@ -1,16 +1,17 @@
+import { BrowserOAuthClient, type OAuthSession } from "@atproto/oauth-client-browser";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./App.tsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { BrowserOAuthClient, OAuthSession } from "@atproto/oauth-client-browser";
+import { App } from "./App.tsx";
 import { Index } from "./Index.tsx";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import { Agent } from "@atproto/api";
 import { CssBaseline } from "@mui/material";
 import { LoginOverlay } from "./LoginOverlay.tsx";
-import { Agent } from "@atproto/api";
+
 const init = async () => {
 	const client = await BrowserOAuthClient.load({
 		clientId: "https://skytools.tomo-x.win/client-metadata.json",

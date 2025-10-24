@@ -1,29 +1,27 @@
-import { Agent } from "@atproto/api";
-import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import { OAuthSession as Session } from "@atproto/oauth-client-browser";
-import { useEffect, useRef, useState } from "react";
+import type { Agent } from "@atproto/api";
+import type { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
+import { AccountCircle, Adb as AdbIcon, Error as ErrorIcon, Login, Menu as MenuIcon } from "@mui/icons-material";
 import {
 	AppBar,
-	Container,
-	Toolbar,
-	Typography,
-	Box,
-	IconButton,
-	Menu,
-	MenuItem,
-	Button,
-	Tooltip,
 	Avatar,
+	Box,
+	Button,
 	Divider,
+	Drawer,
+	IconButton,
 	List,
 	ListItem,
 	ListItemButton,
 	ListItemText,
-	Drawer,
+	Menu,
+	MenuItem,
+	Toolbar,
+	Tooltip,
+	Typography,
 } from "@mui/material";
-import { Adb as AdbIcon, Menu as MenuIcon, Login, Error as ErrorIcon, AccountCircle } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { LoginOverlay } from "./LoginOverlay";
-import { Link, useNavigate } from "react-router-dom";
 
 type comProps = { login: (handle: string) => Promise<never>; logout: () => Promise<void>; pathes: string[] };
 export function Header({ agent, login, pathes, logout }: { agent: Agent | null } & comProps) {

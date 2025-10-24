@@ -4,7 +4,7 @@
 	"additionalProperties": false,
 	"required": ["redirect_uris"],
 	"properties": {
-		"$schema":{"type":"string"},
+		"$schema": { "type": "string" },
 		"redirect_uris": { "type": "array", "items": { "type": "string" } },
 		"response_types": { "type": "array", "items": { "$ref": "#/definitions/responseType" }, "default": ["code"] },
 		"grant_types": {
@@ -13,8 +13,7 @@
 			"default": ["authorization_code"]
 		},
 		"scope": {
-			"type": "string",
-			"pattern": "^[\\x21\\x23-\\x5B\\x5D-\\x7E]+(?: [\\x21\\x23-\\x5B\\x5D-\\x7E]+)*$"
+			"type": "string"
 		},
 		"token_endpoint_auth_method": { "$ref": "#/definitions/endpointAuthMethod", "default": "none" },
 		"token_endpoint_auth_signing_alg": { "type": "string" },

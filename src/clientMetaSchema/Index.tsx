@@ -1,3 +1,3 @@
-export function ClientMetaSchema(){
-    return <></>
+export function ClientMetaSchema() {
+	return <></>;
 }
