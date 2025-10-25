@@ -3,10 +3,8 @@ import { Box, Button, Dialog, DialogTitle, InputAdornment, TextField } from "@mu
 import { useState } from "react";
 import { createCallable } from "react-call";
 
-// biome-ignore lint/suspicious/noConfusingVoidType: <explanation>
-type Props = void;
 type Response = string | null;
-export const LoginOverlay = createCallable<Props, Response>(({ call }) => {
+export const LoginOverlay = createCallable<void, Response>(({ call }) => {
 	const [handle, setHandle] = useState<string>("");
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => setHandle(e.target.value);
 	const handleLogin = () => {

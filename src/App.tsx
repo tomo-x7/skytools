@@ -1,8 +1,12 @@
 import type { Agent } from "@atproto/api";
 import { Route, Routes } from "react-router-dom";
 import { Header } from "./Header";
+import { Top } from "./Top";
+import { ClientMetaSchema } from "./clientMetaSchema/Index";
 
-const pages: Record<string, React.ReactElement> = { app1: <>app1</>, app2: <>app2</> };
+const pages = {
+	ClientMetadataSchema: ClientMetaSchema,
+} satisfies Record<string, React.FC>;
 const pathes = Object.keys(pages);
 
 export function App({
@@ -19,11 +23,10 @@ export function App({
 			<Header {...{ agent, pathes, login, logout }} />
 
 			<Routes>
-				{Object.entries(pages).map(([path, elem]) => (
-					<Route path={path} element={elem} key={path} />
+				{Object.entries(pages).map(([path, Com]) => (
+					<Route path={path} element={<Com />} key={path} />
 				))}
-				<Route path="/app1/*" element={<>app1</>} />
-				<Route path="/app2/*" element={<>app2</>} />
+				<Route index element={<Top />} />
 				<Route path="*" element={<>not found</>} />
 			</Routes>
 		</>

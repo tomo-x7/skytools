@@ -1,9 +1,8 @@
 import { BrowserOAuthClient, type OAuthSession } from "@atproto/oauth-client-browser";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { App } from "./App.tsx";
-import { Index } from "./Index.tsx";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -41,15 +40,11 @@ const init = async () => {
 		localStorage.removeItem("did");
 		location.href = "/";
 	};
-	// biome-ignore lint/style/noNonNullAssertion: <explanation>
 	createRoot(document.getElementById("root")!).render(
 		<StrictMode>
 			<BrowserRouter>
 				<CssBaseline />
-				<Routes>
-					<Route index element={<Index />} />
-					<Route path="*" element={<App {...{ agent: agent ?? null, login, logout }} />} />
-				</Routes>
+				<App {...{ agent: agent ?? null, login, logout }} />
 				<LoginOverlay.Root />
 			</BrowserRouter>
 		</StrictMode>,
